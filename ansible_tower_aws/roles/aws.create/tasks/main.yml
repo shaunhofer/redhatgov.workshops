@@ -1,5 +1,9 @@
 ---
 # tasks file for roles/aws.create
+- name: Set Global vars
+  vars:
+    deploy_working_dir: /tmp/deployment
+
 #===============================================================================
 #  Provisioning
 #===============================================================================
