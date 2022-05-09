@@ -279,7 +279,7 @@
   register: ec2_rhel
 
 - name: Create RHEL Bastion instances (container security)
-  amazon.aws.ec2:
+  amazon.aws.ec2_instance:
     assign_public_ip: yes
     key_name: "{{ workshop_abbrev }}-{{ workshop_prefix }}-key"
     group: "{{ workshop_abbrev }}-{{ workshop_prefix }}-rhel-sg"
