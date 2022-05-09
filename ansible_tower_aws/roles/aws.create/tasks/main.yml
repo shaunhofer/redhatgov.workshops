@@ -22,20 +22,20 @@
 #  debug:
 #    msg: "Using AWS {{ region }} {{ win_ver }} AMI: {{ windows_ami.stdout }}"
 
-- name: deploy container security workshop
-  block:
-    - name: create DNS name list
-      shell: "files/dns-list-create.sh {{ student_nodes_count }} {{ student_count }} {{ domain_name }} {{ workshop_prefix }}"
-      register: dns_name_list
+#- name: deploy container security workshop
+#  block:
+#    - name: create DNS name list
+#      shell: "files/dns-list-create.sh {{ student_nodes_count }} {{ student_count }} {{ domain_name }} {{ workshop_prefix }}"
+#      register: dns_name_list
 
-    - debug:
-        var: dns_name_list
+#    - debug:
+#        var: dns_name_list
 
-    - name: define container_security required racts
-      set_fact:
-        rhel_count: "{{ student_count|int*student_nodes_count|int }}"
+#    - name: define container_security required racts
+#      set_fact:
+#        rhel_count: "{{ student_count|int*student_nodes_count|int }}"
 
-  when: workshop == "container_security"
+#when: workshop == "container_security"
 
 #---------------------------------------------------
 #  Deployment directory creation
