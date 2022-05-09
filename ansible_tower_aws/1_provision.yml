@@ -23,6 +23,6 @@
   tags:
     - acme
   roles:
-    - role: acme
+    - acme
 
 ...
