@@ -14,9 +14,9 @@
 #    cmd: aws ec2 describe-images --region "{{ region }}" --filters "Name=architecture,Values=x86_64" --filters "Name=name,Values={{ win_ver }}-English-Full-Base*" --query 'Images[*].[Name,ImageId]' --output text  | sort -V | awk '$1 !~ /.*BETA.*/ {ami=$2} END{print ami}'
 #  register: windows_ami
 
-- name: RHEL AMI
-  debug:
-    msg: "Using AWS {{ region }} {{ rhel_ver }} AMI: {{ rhel_ami }}"
+#- name: RHEL AMI
+#  debug:
+#    msg: "Using AWS {{ region }} {{ rhel_ver }} AMI: {{ rhel_ami }}"
 
 #- name: Windows AMI
 #  debug:
@@ -234,7 +234,7 @@
     group: "{{ workshop_abbrev }}-{{ workshop_prefix }}-rhel-sg"
     region: "{{ region }}"
     instance_type: "{{ rhel_instance_type }}"
-    image: "{{ rhel_ami.stdout }}"
+    image: "{{ rhel_ami }}"
     vpc_subnet_id: "{{ ec2_subnet.subnet.id }}"
     wait: true
     instance_tags:
@@ -259,7 +259,7 @@
     group: "{{ workshop_abbrev }}-{{ workshop_prefix }}-rhel-sg"
     region: "{{ region }}"
     instance_type: "{{ rhel_instance_type }}"
-    image: "{{ rhel_ami.stdout }}"
+    image: "{{ rhel_ami }}"
     vpc_subnet_id: "{{ ec2_subnet.subnet.id }}"
     volumes: "{{ rhel_instance_vols }}"
     wait: true
@@ -285,7 +285,7 @@
     group: "{{ workshop_abbrev }}-{{ workshop_prefix }}-rhel-sg"
     region: "{{ region }}"
     instance_type: "{{ bastion_instance_type }}"
-    image: "{{ rhel_ami.stdout }}"
+    image: "{{ rhel_ami }}"
     vpc_subnet_id: "{{ ec2_subnet.subnet.id }}"
     wait: true
     instance_tags:
@@ -337,7 +337,7 @@
     group: "{{ workshop_abbrev }}-{{ workshop_prefix }}-rhel-sg"
     region: "{{ region }}"
     instance_type: "{{ tower_instance_type }}"
-    image: "{{ rhel_ami.stdout }}"
+    image: "{{ rhel_ami }}"
     vpc_subnet_id: "{{ ec2_subnet.subnet.id }}"
     wait: true
     instance_tags:
